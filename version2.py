@@ -63,7 +63,7 @@ def get_best_move():
 
         if count == 2:
             for coordinate in combination:
-                if coordinate not in computer_moves:
+                if coordinate in empty:
                     return coordinate
          #Decides whether player needs to be blocked or not     
     for combination in winning_combinations:
@@ -73,7 +73,7 @@ def get_best_move():
                 count += 1
         if count == 2:
             for coordinate in combination:
-                if coordinate not in player_moves:
+                if coordinate in empty:
                     return coordinate
 
     return random.choice(empty)
@@ -115,10 +115,12 @@ while True:
     player_move()
 
     if check_game_over():
+        display_grid()
         break
 
     display_grid()
     computer_move()
 
     if check_game_over():
+        display_grid()
         break
