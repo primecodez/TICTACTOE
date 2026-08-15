@@ -1,0 +1,13 @@
+Version 2.5
+
+Prefer center
+Prefer corners
+Avoid bad moves
+
+Version 3
+
+Detect forks (create two winning opportunities simultaneously)
+
+Version 4
+
+Minimax → unbeatable AI
