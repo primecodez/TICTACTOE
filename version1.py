@@ -16,6 +16,17 @@ for row in range(len(grid)):
         if grid[row][col] == " ":
             empty.append((row, col))
 
+winning_combinations = [
+                         [(0, 0), (0, 1), (0, 2)], # row 0
+                         [(1, 0), (1, 1), (1, 2)], # row 1
+                         [(2, 0), (2, 1), (2, 2)], # row 2
+                         [(0, 0), (1, 0), (2, 0)], # column 0
+                         [(0, 1), (1, 1), (2, 1)], # column 1
+                         [(0, 2), (1, 2), (2, 2)], # column 2
+                         [(0, 0), (1, 1), (2, 2)], # diagonal
+                         [(0, 2), (1, 1), (2, 0)]  # other diagonal
+                       ]
+
 def computer_move():
     if empty:
         row, col = random.choice(empty)
@@ -47,18 +58,27 @@ def display_grid():
 
     print("╚═══╩═══╩═══╝")
 
-def check_winner():
-    j
+def check_winner(symbol):
+    for combination in winning_combinations:
+        if all(grid[row][col] == symbol for row, col in combination):
+            return True
+    return False
     
-
+    
+""" draw detection
+ clean up the game loop"""
 
 while True:
     display_grid()
     player_move()
 
-    # later: check winner
+    if check_winner("X"):
+        print("Congratulations! You won!")
+        break
 
     display_grid()
     computer_move()
 
-    # later: check winner
+    if check_winner("O"):
+        print("Computer wins!")
+        break
