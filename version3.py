@@ -32,7 +32,7 @@ winning_combinations = [
 def computer_move():
     if empty:
         row, col = get_best_move()
-        grid[row][col] = "O"
+        grid[row][col] = computer_symbol
         empty.remove((row, col))
         computer_moves.append((row, col))
 
@@ -43,7 +43,7 @@ def player_move():
             row = int(input("Enter the row (0-2): "))
             col = int(input("Enter the column (0-2): "))
             if grid[row][col] == " ":
-                grid[row][col] = "X"
+                grid[row][col] = player_symbol
                 empty.remove((row, col))
                 player_moves.append((row, col))
                 break
@@ -97,10 +97,10 @@ def check_winner(symbol):
     
     
 def check_game_over():
-    if check_winner("X"):
+    if check_winner(player_symbol):
         print("Congratulations! You won!")
         return True
-    elif check_winner("O"):
+    elif check_winner(computer_symbol):
         print("Computer wins!")
         
         return True
@@ -116,16 +116,42 @@ while True:
     if key not in ["X", "O"]:
         print("Invalid input. Please choose either X or O.")
         continue
-    display_grid()
-    player_move()
+    if key == "X":
+        player_symbol = "X"
+        computer_symbol = "O"
+    else:
+        player_symbol = "O"
+        computer_symbol = "X"
 
-    if check_game_over():
+
+    if player_symbol == "X":
         display_grid()
-        break
-
-    display_grid()
-    computer_move()
-
-    if check_game_over():
+        player_move()
+        
+        if check_game_over():
+            display_grid()
+            break
+        
         display_grid()
-        break
+        computer_move()
+        
+        if check_game_over():
+            display_grid()
+            break
+
+    else:
+        display_grid()
+        computer_move()
+        
+        if check_game_over():
+            display_grid()
+            break
+        
+        display_grid()
+        player_move()
+        
+        if check_game_over():
+            display_grid()
+            break
+           
+    
