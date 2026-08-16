@@ -122,36 +122,27 @@ while True:
     else:
         player_symbol = "O"
         computer_symbol = "X"
+    break
 
 
-    if player_symbol == "X":
-        display_grid()
+if player_symbol == "X":
+    player = True
+else:
+    player = False
+
+while True:
+    display_grid()
+    if player:
         player_move()
-        
-        if check_game_over():
-            display_grid()
-            break
-        
-        display_grid()
-        computer_move()
-        
-        if check_game_over():
-            display_grid()
-            break
-
     else:
-        display_grid()
         computer_move()
-        
-        if check_game_over():
-            display_grid()
-            break
-        
+            
+    if check_game_over():
         display_grid()
-        player_move()
+        break
+    
+    player = not player
         
-        if check_game_over():
-            display_grid()
-            break
+      
            
     
