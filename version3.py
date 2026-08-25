@@ -29,6 +29,8 @@ winning_combinations = [
                          [(0, 2), (1, 1), (2, 0)]  # other diagonal
                        ]
 
+centre_and_corner = [(0,0),(0,2),(2,0),(2,2),(1,1)]
+
 def computer_move():
     if empty:
         row, col = get_best_move()
@@ -75,6 +77,10 @@ def get_best_move():
             for coordinate in combination:
                 if coordinate in empty:
                     return coordinate
+
+    for move in centre_and_corner:
+        if move in empty:
+            return move
 
     return random.choice(empty)
 
